@@ -1,0 +1,19 @@
+pipeline {
+   agent any
+   environment{
+       PATH="/opt/maven/apache-maven-3.6.3/bin:$PATH"
+   }
+
+   stages {
+      stage('SCM check out') {
+         steps {
+           git 'https://github.com/yankils/hello-world.git'
+         }
+      }
+      stage('MVN build') {
+         steps {
+           sh "mvn clean package"
+         }
+      }
+   }
+}
